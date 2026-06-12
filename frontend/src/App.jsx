@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./Components/Navbar";
-
+import Events from "./pages/Events";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Events from "./pages/Events";
 import MyBookings from "./pages/MyBookings";
 
 function App() {
@@ -13,13 +12,13 @@ function App() {
 
       <Navbar />
 
+      <div className="container mt-3">
+        <p className="text-muted">
+          Book Smarter. Experience Better.
+        </p>
+      </div>
+
       <Routes>
-
-        <Route
-          path="/"
-          element={<Events />}
-        />
-
         <Route
           path="/events"
           element={<Events />}
@@ -39,7 +38,6 @@ function App() {
           path="/bookings"
           element={<MyBookings />}
         />
-
       </Routes>
 
     </BrowserRouter>

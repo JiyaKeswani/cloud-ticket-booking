@@ -35,9 +35,9 @@ function MyBookings() {
   return (
     <div className="container mt-4">
 
-      <h2>
-        ☁️ My SkyPass Bookings
-      </h2>
+      <h2 className="page-title">
+  ☁️ My SkyPass Bookings
+</h2>
 
       {bookings.length === 0 ? (
         <p className="mt-3">
@@ -47,7 +47,7 @@ function MyBookings() {
         bookings.map((booking) => (
           <div
             key={booking.id}
-            className="card p-3 mt-3"
+            className="card sky-card shadow p-4 mt-3"
           >
             <h4>{booking.title}</h4>
 

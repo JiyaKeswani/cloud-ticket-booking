@@ -15,7 +15,7 @@ function Navbar() {
           className="navbar-brand"
           to="/"
         >
-          ☁️ SkyPass | Book Smarter. Experience Better.
+          ☁️ SkyPass
         </Link>
 
         <div className="navbar-nav ms-auto">
@@ -56,6 +56,7 @@ function Navbar() {
           </button>
 
         </div>
+
       </div>
     </nav>
   );
