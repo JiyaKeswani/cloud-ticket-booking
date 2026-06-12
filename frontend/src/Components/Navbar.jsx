@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
+
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
@@ -9,7 +15,7 @@ function Navbar() {
           className="navbar-brand"
           to="/"
         >
-          ☁️ SkyPass
+          ☁️ SkyPass | Book Smarter. Experience Better.
         </Link>
 
         <div className="navbar-nav ms-auto">
@@ -41,6 +47,13 @@ function Navbar() {
           >
             Register
           </Link>
+
+          <button
+            className="btn btn-light btn-sm ms-3"
+            onClick={logout}
+          >
+            Logout
+          </button>
 
         </div>
       </div>

@@ -10,13 +10,41 @@ function Events() {
 
   async function fetchEvents() {
     try {
-      const response =
-        await api.get("/events");
-
+      const response = await api.get("/events");
       setEvents(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function bookTicket(eventId) {
+    try {
+      const token = localStorage.getItem("token");
+
+      await api.post(
+        "/bookings",
+        {
+          eventId: eventId,
+          quantity: 1
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      alert("🎉 Ticket booked successfully!");
+
+      fetchEvents();
 
     } catch (error) {
       console.error(error);
+
+      alert(
+        error.response?.data?.message ||
+        "Booking failed"
+      );
     }
   }
 
@@ -28,13 +56,11 @@ function Events() {
       {events.map((event) => (
         <div
           key={event.id}
-          className="card p-3 mt-3"
+          className="card p-4 mt-3 shadow"
         >
           <h4>{event.title}</h4>
 
-          <p>
-            📍 {event.location}
-          </p>
+          <p>📍 {event.location}</p>
 
           <p>
             🎟️ Available Tickets:
@@ -44,13 +70,15 @@ function Events() {
 
           <button
             className="btn btn-primary"
+            onClick={() =>
+              bookTicket(event.id)
+            }
           >
             Book Ticket
           </button>
 
         </div>
       ))}
-
     </div>
   );
 }
