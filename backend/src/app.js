@@ -1,3 +1,4 @@
+const cors = require("cors");
 require("dotenv").config();
 
 const express = require("express");
@@ -8,16 +9,29 @@ const bookingRoutes = require("./routes/bookingRoutes");
 
 const app = express();
 
+/*
+MIDDLEWARE
+*/
+app.use(cors());
 app.use(express.json());
 
+/*
+HOME ROUTE
+*/
 app.get("/", (req, res) => {
-  res.send("Ticket Booking API Running");
+  res.send("SkyPass API Running");
 });
 
+/*
+ROUTES
+*/
 app.use("/api/events", eventRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+/*
+SERVER
+*/
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
